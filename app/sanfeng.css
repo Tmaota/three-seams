@@ -1,0 +1,243 @@
+/* ============================================================
+   三缝之地百科 · 双主题
+   ☀ 百科模式（:root）——灰机 wiki 原味：白底、wiki 蓝、衬线标题
+   🌙 指南模式（.dark 槽位）——羊皮纸底、深棕字、全衬线
+   Nextra 主题通过 --x-*（tailwind token）与 --nextra-* 变量取色，
+   覆盖这两组变量即可整体换肤。
+   ============================================================ */
+
+:root {
+  --sf-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif CN',
+    'STSong', 'STSongti-SC', 'SimSun', serif;
+  --sf-sans: system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+
+  /* 灰机式 wiki 蓝链接（MediaWiki #0645ad 系） */
+  --nextra-primary-hue: 220deg;
+  --nextra-primary-saturation: 73%;
+  --nextra-primary-lightness: 45%;
+
+  /* 标题衬线，正文无衬线——MediaWiki 的排印习惯 */
+  --x-font-sans: var(--sf-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sf-serif);
+  letter-spacing: 0.02em;
+}
+
+/* 词条页首行的英文名副标题 */
+.nextra-content > p:first-of-type > em:only-child {
+  display: inline-block;
+  font-style: normal;
+  font-family: var(--sf-serif);
+  font-size: 0.95rem;
+  color: #6b7280;
+  border-left: 3px solid
+    hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness) / 0.35);
+  padding-left: 0.6rem;
+  margin-bottom: 1.4rem;
+}
+
+/* ---------- 顶栏品牌与随机词条 ---------- */
+.sf-brand {
+  font-family: var(--sf-serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+}
+.sf-brand-diamond {
+  color: hsl(var(--nextra-primary-hue) 60% 50%);
+  margin-right: 0.45rem;
+  font-size: 0.8em;
+}
+.sf-random {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid
+    hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness) / 0.4);
+  color: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness));
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-right: 0.5rem;
+}
+.sf-random:hover {
+  background: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness) / 0.08);
+}
+
+/* ============================================================
+   🌙 指南模式：羊皮纸
+   ============================================================ */
+.dark {
+  --nextra-primary-hue: 32deg;
+  --nextra-primary-saturation: 52%;
+  --nextra-primary-lightness: 36%;
+
+  --nextra-bg: #f1e6cf;
+
+  /* 全站衬线：翻开一本旧指南书 */
+  --x-font-sans: var(--sf-serif);
+
+  /* 中性色 → 暖棕 */
+  --x-color-neutral-50: #f7f0de;
+  --x-color-neutral-100: #eee3c8;
+  --x-color-neutral-200: #e2d2ad;
+  --x-color-neutral-300: #cfba8e;
+  --x-color-neutral-400: #ac9568;
+  --x-color-neutral-500: #87724c;
+  --x-color-neutral-600: #6a5939;
+  --x-color-neutral-700: #544629;
+  --x-color-neutral-800: #40341e;
+  --x-color-neutral-900: #2f2613;
+
+  /* 主色 → 赭金 */
+  --x-color-primary-50: #faf3e0;
+  --x-color-primary-100: #f3e5c4;
+  --x-color-primary-200: #e8d29c;
+  --x-color-primary-300: #d9b86f;
+  --x-color-primary-400: #c79a45;
+  --x-color-primary-500: #b0802f;
+  --x-color-primary-600: #8f6624;
+  --x-color-primary-700: #72501e;
+  --x-color-primary-800: #5a3f1a;
+  --x-color-primary-900: #452f14;
+
+  --x-color-black: #2c2312;
+  --x-color-white: #faf4e6;
+}
+
+/* 羊皮纸底色 + 极淡纸纹（纯 CSS，无图片） */
+.dark body {
+  background-color: #f1e6cf;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgb(255 250 235 / 0.55), transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgb(160 120 60 / 0.08), transparent 50%),
+    repeating-linear-gradient(0deg, rgb(120 90 40 / 0.018) 0 1px, transparent 1px 3px);
+}
+
+.dark .nextra-content {
+  color: #3d3018;
+}
+
+.dark .nextra-content > p:first-of-type > em:only-child {
+  color: #87724c;
+  border-left-color: #c79a45;
+}
+
+/* 指南模式下的分隔纹样：标题下的双细线 */
+.dark .nextra-content h1 {
+  padding-bottom: 0.7rem;
+  border-bottom: 3px double #c9b280;
+}
+
+/* ============================================================
+   首页（混合式）
+   ============================================================ */
+.sf-home {
+  margin: 0 auto;
+  max-width: 68rem;
+  padding: 2.5rem 1.25rem 4rem;
+}
+.sf-hero {
+  text-align: center;
+  padding: 2.5rem 0 2rem;
+}
+.sf-hero h1 {
+  font-size: 2.1rem;
+  margin-bottom: 0.9rem;
+}
+.sf-tagline {
+  font-family: var(--sf-serif);
+  font-size: 1.08rem;
+  opacity: 0.85;
+  margin-bottom: 0.8rem;
+}
+.sf-intro {
+  max-width: 34rem;
+  margin: 0 auto 1.6rem;
+  font-size: 0.92rem;
+  line-height: 1.9;
+  opacity: 0.75;
+}
+.sf-hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.sf-action,
+.sf-home .sf-random {
+  font-size: 0.9rem;
+  padding: 0.45rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid
+    hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness) / 0.45);
+  color: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness));
+  background: transparent;
+  display: inline-block;
+}
+.sf-action:hover,
+.sf-home .sf-random:hover {
+  background: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness) / 0.09);
+}
+
+.sf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.9rem;
+  margin: 2rem 0;
+}
+.sf-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 1.15rem 0.75rem 0.95rem;
+  border-radius: 0.75rem;
+  border: 1px solid
+    hsl(var(--nextra-primary-hue) 20% 50% / 0.18);
+  text-align: center;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.sf-card:hover {
+  border-color: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness) / 0.55);
+  box-shadow: 0 3px 14px rgb(0 0 0 / 0.06);
+  transform: translateY(-1px);
+}
+.sf-card-icon {
+  border-radius: 0.4rem;
+}
+.sf-card-zh {
+  font-family: var(--sf-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.sf-card-en {
+  font-size: 0.68rem;
+  opacity: 0.55;
+  line-height: 1.35;
+}
+
+.sf-recent h2 {
+  font-size: 1.15rem;
+  margin-bottom: 0.8rem;
+}
+.sf-recent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sf-recent li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px dashed
+    hsl(var(--nextra-primary-hue) 20% 50% / 0.22);
+}
+.sf-recent li span {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}

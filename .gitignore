@@ -1,0 +1,12 @@
+# 依赖与构建产物
+node_modules/
+.next/
+out/
+
+# 构建时生成（npm run content）
+content/
+lib/routes.generated.ts
+
+# 杂项
+*.log
+.DS_Store

@@ -1,0 +1,25 @@
+{
+  "name": "sanfeng-wiki",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "content": "node scripts/split-content.mjs",
+    "dev": "next dev",
+    "build": "node scripts/split-content.mjs && next build",
+    "postbuild": "pagefind --site out --output-subdir _pagefind",
+    "start": "npx serve out"
+  },
+  "dependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "next": "^16.4.2",
+    "nextra": "^4.6.1",
+    "nextra-theme-docs": "^4.6.1",
+    "pagefind": "^1.5.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^6.0.3",
+    "zod": "4.1.12"
+  }
+}
