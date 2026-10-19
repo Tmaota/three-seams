@@ -200,59 +200,87 @@ article > div.nextra-border {
 }
 
 /* ============================================================
-   旅者手记（底部随机彩蛋条）
+   旅者手记（右下角随机彩蛋条 · 旧站风格）
    ============================================================ */
 .sf-tips {
   position: fixed;
-  bottom: 68px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 16px;
+  bottom: 16px;
   z-index: 40;
+  width: min(19rem, calc(100vw - 32px));
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  max-width: min(40rem, 92vw);
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid rgb(0 0 0 / 0.08);
-  background: rgb(255 255 255 / 0.96);
-  box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
-  font-size: 0.8rem;
-  color: #475569;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 0.6rem 0.85rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid hsl(260 8% 15%);
+  background: hsl(260 12% 7% / 0.95);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.28);
+  overflow: hidden;
 }
 .sf-tips-icon {
   flex-shrink: 0;
+  color: hsl(35 55% 52%);
+  font-size: 0.7rem;
+  line-height: 1.9;
 }
 .sf-tips-text {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: hsl(35 15% 60%);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
-.sf-tips-btn {
-  flex-shrink: 0;
+.sf-tips-close {
+  position: absolute;
+  top: 2px;
+  right: 4px;
   border: none;
   background: transparent;
-  color: #64748b;
-  font-size: 0.75rem;
+  color: hsl(260 5% 40%);
+  font-size: 0.85rem;
+  line-height: 1;
   cursor: pointer;
-  padding: 0.15rem 0.4rem;
-  border-radius: 999px;
+  padding: 0.15rem 0.3rem;
 }
-.sf-tips-btn:hover {
-  background: rgb(0 0 0 / 0.05);
-  color: #334155;
+.sf-tips-close:hover {
+  color: hsl(35 30% 60%);
+}
+/* 6 秒倒计时条：走完自动换下一条 */
+.sf-tips-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: hsl(35 55% 50%);
+  animation: sf-tips-progress 6s linear forwards;
+}
+@keyframes sf-tips-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 .sf-tips-restore {
   position: fixed;
-  bottom: 68px;
-  left: 16px;
+  bottom: 16px;
+  right: 16px;
   z-index: 40;
   width: 34px;
   height: 34px;
-  border-radius: 999px;
-  border: 1px solid rgb(0 0 0 / 0.08);
-  background: rgb(255 255 255 / 0.96);
-  box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+  border-radius: 10px;
+  border: 1px solid hsl(260 8% 15%);
+  background: hsl(260 12% 7% / 0.95);
+  color: hsl(35 55% 52%);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.28);
   cursor: pointer;
   font-size: 0.85rem;
 }
@@ -473,12 +501,13 @@ body.sf-editing article > div.nextra-border {
   color: #2563eb;
 }
 
-/* 移动端：翻页条占底，墨印与彩蛋同排上移 */
+/* 移动端：翻页条占底，彩蛋条上移避开 */
 @media (max-width: 767px) {
   .sf-tips {
-    bottom: 68px;
-    left: 64px;
-    transform: none;
-    max-width: calc(100vw - 84px);
+    bottom: 64px;
+    right: 12px;
+  }
+  .sf-tips-restore {
+    bottom: 64px;
   }
 }

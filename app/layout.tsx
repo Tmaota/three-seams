@@ -1,4 +1,4 @@
-import { Footer, Layout } from 'nextra-theme-docs'
+import { Layout } from 'nextra-theme-docs'
 import { getPageMap } from 'nextra/page-map'
 import type { Metadata } from 'next'
 import SanfengNavbar from '@/components/SanfengNavbar'
@@ -33,7 +33,6 @@ export default async function RootLayout({
           <Layout
             pageMap={await getPageMap()}
             navbar={<SanfengNavbar />}
-            footer={<Footer>三缝之地 · 世界观设定集与旅者指南</Footer>}
             docsRepositoryBase={DOCS_REPO}
             editLink={<>编辑此页</>}
             toc={{ title: <>本页目录</>, backToTop: <>回到顶部</> }}
