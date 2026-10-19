@@ -2,6 +2,7 @@ import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
 import type { MDXComponents } from 'nextra/mdx-components'
 import { HomeHero, RecentList, SectionGrid } from '@/components/home'
 import { linkifyChildren } from '@/components/autolink'
+import WorldMap from '@/components/WorldMap'
 
 const theme = getThemeComponents({})
 
@@ -32,6 +33,7 @@ export function useMDXComponents(
     HomeHero,
     SectionGrid,
     RecentList,
+    WorldMap,
     p: GlossP,
     li: GlossLi,
   }

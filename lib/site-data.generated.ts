@@ -163,13 +163,6 @@ export const pageData: Record<
       "地理与势力"
     ]
   },
-  "/geography/map-of-the-world": {
-    "title": "世界地图",
-    "chapter": "地理与势力",
-    "tags": [
-      "地理与势力"
-    ]
-  },
   "/geography/outer-scenes": {
     "title": "外围场景",
     "chapter": "地理与势力",
@@ -731,10 +724,6 @@ export const tagIndex: Record<string, { href: string; title: string }[]> = {
     {
       "href": "/geography",
       "title": "地理与势力"
-    },
-    {
-      "href": "/geography/map-of-the-world",
-      "title": "世界地图"
     },
     {
       "href": "/geography/outer-scenes",

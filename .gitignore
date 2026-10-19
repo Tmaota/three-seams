@@ -9,3 +9,6 @@ out/
 # 杂项
 *.log
 .DS_Store
+
+# 地图草稿目录（本地审阅用）
+drafts/

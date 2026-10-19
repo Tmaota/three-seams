@@ -190,6 +190,75 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================================
+   交互式世界地图（世界总图 + 区域详图）
+   ============================================================ */
+.sf-map {
+  margin: 1.2rem 0 1.6rem;
+  border: 1px solid rgb(15 23 42 / 0.16);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #2f4460;
+}
+.sf-map-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.55rem 0.9rem;
+  background: #faf7ef;
+  border-bottom: 1px solid rgb(15 23 42 / 0.12);
+}
+.sf-map-title {
+  font-family: var(--sf-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.sf-map-back {
+  border: 1px solid hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness) / 0.4);
+  background: white;
+  color: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness));
+  font-size: 0.8rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.sf-map-back:hover {
+  background: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness) / 0.08);
+}
+.sf-map-hint {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #8a94a6;
+}
+.sf-map-stage {
+  position: relative;
+  line-height: 0;
+}
+.sf-map-stage > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.sf-map-hotspots {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.sf-map-hot {
+  fill: transparent;
+  stroke: transparent;
+  cursor: pointer;
+  transition: fill 0.15s, stroke 0.15s;
+}
+.sf-map-link:hover .sf-map-hot,
+.sf-map-link:focus-visible .sf-map-hot {
+  fill: rgb(232 182 76 / 0.24);
+  stroke: #e8b64c;
+  stroke-width: 1;
+}
+
+/* ============================================================
    上一篇/下一篇：钉在视口底部，不随内容长短浮动
    （Nextra 翻页条是 article 的最后一个 div.nextra-border）
    ============================================================ */
