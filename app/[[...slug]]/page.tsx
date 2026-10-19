@@ -25,8 +25,9 @@ export async function generateStaticParams(): Promise<
     slug: string[]
   }[]
   // /tags 与 /tags/<分类> 聚合页也走本 catch-all，避免与可选 catch-all 冲突
+  // 注意：slug 用原始中文——导出目录名需与 GitHub Pages 解码后的 URL 一致
   const tagParams = Object.keys(tagIndex).map((tag) => ({
-    slug: ['tags', encodeURIComponent(tag)],
+    slug: ['tags', tag],
   }))
   return [...contentParams, { slug: ['tags'] }, ...tagParams]
 }
