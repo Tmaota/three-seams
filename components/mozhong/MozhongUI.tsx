@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import Image from 'next/image'
+import { asset } from '@/lib/asset'
 import { useMozhong } from './context'
 import { saveEntryPage, saveHomepage } from './save'
 
@@ -150,7 +150,7 @@ export default function MozhongUI() {
           title={loggedIn ? '墨种之境 · 进入编辑' : '墨种之境'}
           onClick={() => (loggedIn ? setEditing(true) : (setPwError(''), setModal('password')))}
         >
-          <Image src="/icons/icon-mozhong.svg" alt="墨种之境" width={22} height={22} />
+          <img src={asset('/icons/icon-mozhong.svg')} alt="墨种之境" width={22} height={22} />
         </button>
       )}
 
@@ -202,7 +202,7 @@ export default function MozhongUI() {
             {modal === 'password' ? (
               <>
                 <div className="sf-modal-title">
-                  <Image src="/icons/icon-mozhong.svg" alt="" width={18} height={18} /> 墨种之境
+                  <img src={asset('/icons/icon-mozhong.svg')} alt="" width={18} height={18} /> 墨种之境
                 </div>
                 <p className="sf-modal-desc">以墨种身份登录，即可在页面之上直接修改文字。</p>
                 <div className="sf-modal-field">

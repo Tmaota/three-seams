@@ -1,16 +1,17 @@
 'use client'
 
-import Image from 'next/image'
 import { Navbar } from 'nextra-theme-docs'
 import RandomEntry from './RandomEntry'
+import { asset } from '@/lib/asset'
 
 export default function SanfengNavbar() {
   return (
     <Navbar
       logo={
         <span className="sf-brand">
-          <Image
-            src="/icons/icon-brand.svg"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={asset('/icons/icon-brand.svg')}
             alt=""
             width={22}
             height={22}

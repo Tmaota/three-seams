@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import RandomEntry from '@/components/RandomEntry'
+import { asset } from '@/lib/asset'
 import homeConfig from '@/content/home.config.json'
 
 // 板块宫格数据：图标暂用旧站 PNG 占位，待 codex 重绘后替换 public/icons/
@@ -45,9 +45,10 @@ export function SectionGrid() {
     <section className="sf-grid" aria-label="板块入口">
       {CHAPTERS.map((c) => (
         <Link key={c.slug} href={`/${c.slug}/`} className="sf-card">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             className="sf-card-icon"
-            src={`/icons/${c.icon}.svg`}
+            src={asset(`/icons/${c.icon}.svg`)}
             alt=""
             width={56}
             height={56}
