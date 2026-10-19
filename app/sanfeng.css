@@ -1,9 +1,6 @@
 /* ============================================================
-   三缝之地百科 · 双主题
-   ☀ 百科模式（:root）——灰机 wiki 原味：白底、wiki 蓝、衬线标题
-   🌙 指南模式（.dark 槽位）——羊皮纸底、深棕字、全衬线
-   Nextra 主题通过 --x-*（tailwind token）与 --nextra-* 变量取色，
-   覆盖这两组变量即可整体换肤。
+   三缝之地百科 · 单一百科主题
+   灰机 wiki 原味：白底、wiki 蓝、衬线标题
    ============================================================ */
 
 :root {
@@ -17,7 +14,6 @@
   --nextra-primary-saturation: 73%;
   --nextra-primary-lightness: 45%;
 
-  /* 标题衬线，正文无衬线——MediaWiki 的排印习惯 */
   --x-font-sans: var(--sf-sans);
 }
 
@@ -68,68 +64,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================================
-   🌙 指南模式：羊皮纸
+   上一篇/下一篇：钉在视口底部，不随内容长短浮动
+   （Nextra 翻页条是 article 的最后一个 div.nextra-border）
    ============================================================ */
-.dark {
-  --nextra-primary-hue: 32deg;
-  --nextra-primary-saturation: 52%;
-  --nextra-primary-lightness: 36%;
-
-  --nextra-bg: #f1e6cf;
-
-  /* 全站衬线：翻开一本旧指南书 */
-  --x-font-sans: var(--sf-serif);
-
-  /* 中性色 → 暖棕 */
-  --x-color-neutral-50: #f7f0de;
-  --x-color-neutral-100: #eee3c8;
-  --x-color-neutral-200: #e2d2ad;
-  --x-color-neutral-300: #cfba8e;
-  --x-color-neutral-400: #ac9568;
-  --x-color-neutral-500: #87724c;
-  --x-color-neutral-600: #6a5939;
-  --x-color-neutral-700: #544629;
-  --x-color-neutral-800: #40341e;
-  --x-color-neutral-900: #2f2613;
-
-  /* 主色 → 赭金 */
-  --x-color-primary-50: #faf3e0;
-  --x-color-primary-100: #f3e5c4;
-  --x-color-primary-200: #e8d29c;
-  --x-color-primary-300: #d9b86f;
-  --x-color-primary-400: #c79a45;
-  --x-color-primary-500: #b0802f;
-  --x-color-primary-600: #8f6624;
-  --x-color-primary-700: #72501e;
-  --x-color-primary-800: #5a3f1a;
-  --x-color-primary-900: #452f14;
-
-  --x-color-black: #2c2312;
-  --x-color-white: #faf4e6;
+article {
+  display: flex;
+  flex-direction: column;
 }
-
-/* 羊皮纸底色 + 极淡纸纹（纯 CSS，无图片） */
-.dark body {
-  background-color: #f1e6cf;
-  background-image:
-    radial-gradient(ellipse at 20% 10%, rgb(255 250 235 / 0.55), transparent 55%),
-    radial-gradient(ellipse at 85% 90%, rgb(160 120 60 / 0.08), transparent 50%),
-    repeating-linear-gradient(0deg, rgb(120 90 40 / 0.018) 0 1px, transparent 1px 3px);
+article > div.nextra-border {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: 0;
+  margin-inline: -1rem;
+  padding: 0.6rem 1rem;
+  z-index: 30;
+  background: rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(8px);
 }
-
-.dark .nextra-content {
-  color: #3d3018;
-}
-
-.dark .nextra-content > p:first-of-type > em:only-child {
-  color: #87724c;
-  border-left-color: #c79a45;
-}
-
-/* 指南模式下的分隔纹样：标题下的双细线 */
-.dark .nextra-content h1 {
-  padding-bottom: 0.7rem;
-  border-bottom: 3px double #c9b280;
+@media (min-width: 768px) {
+  article > div.nextra-border {
+    margin-inline: -3rem;
+    padding-inline: 3rem;
+  }
 }
 
 /* ============================================================
@@ -240,4 +197,288 @@ h1, h2, h3, h4, h5, h6 {
 .sf-recent li span {
   font-size: 0.8rem;
   opacity: 0.6;
+}
+
+/* ============================================================
+   旅者手记（底部随机彩蛋条）
+   ============================================================ */
+.sf-tips {
+  position: fixed;
+  bottom: 68px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: min(40rem, 92vw);
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgb(0 0 0 / 0.08);
+  background: rgb(255 255 255 / 0.96);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+  font-size: 0.8rem;
+  color: #475569;
+}
+.sf-tips-icon {
+  flex-shrink: 0;
+}
+.sf-tips-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.sf-tips-btn {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+}
+.sf-tips-btn:hover {
+  background: rgb(0 0 0 / 0.05);
+  color: #334155;
+}
+.sf-tips-restore {
+  position: fixed;
+  bottom: 68px;
+  left: 16px;
+  z-index: 40;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgb(0 0 0 / 0.08);
+  background: rgb(255 255 255 / 0.96);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   墨种之境（在线编辑）
+   ============================================================ */
+
+/* 左下角墨印入口（避开底部翻页条） */
+.sf-mozhong-btn {
+  position: fixed;
+  bottom: 68px;
+  left: 16px;
+  z-index: 50;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgb(15 23 42 / 0.2);
+  background: #1e293b;
+  color: #f8fafc;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgb(15 23 42 / 0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.sf-mozhong-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgb(15 23 42 / 0.4);
+}
+
+/* 编辑态：可编辑元素提示 */
+[contenteditable='true'] {
+  outline: 1.5px dashed rgb(59 130 246 / 0.4);
+  outline-offset: 5px;
+  border-radius: 3px;
+  cursor: text;
+}
+[contenteditable='true']:focus {
+  outline: 2px solid rgb(59 130 246 / 0.65);
+  background: rgb(59 130 246 / 0.04);
+}
+body.sf-editing article {
+  padding-bottom: 84px;
+}
+/* 编辑时隐藏彩蛋与翻页条，避免遮挡 */
+body.sf-editing .sf-tips,
+body.sf-editing .sf-tips-restore,
+body.sf-editing article > div.nextra-border {
+  display: none;
+}
+
+/* 编辑底栏 */
+.sf-editbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: rgb(255 255 255 / 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgb(15 23 42 / 0.1);
+  box-shadow: 0 -4px 16px rgb(15 23 42 / 0.06);
+}
+.sf-editbar-tools {
+  display: flex;
+  gap: 0.25rem;
+}
+.sf-editbar-tools button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(15 23 42 / 0.15);
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #334155;
+}
+.sf-editbar-tools button:hover {
+  background: #f1f5f9;
+}
+.sf-editbar-status {
+  flex: 1;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #64748b;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.sf-editbar-status.st-done {
+  color: #16a34a;
+}
+.sf-editbar-status.st-error {
+  color: #dc2626;
+}
+.sf-editbar-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.sf-editbar-actions button {
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgb(15 23 42 / 0.15);
+  background: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #334155;
+}
+.sf-editbar-actions button:hover {
+  background: #f1f5f9;
+}
+.sf-editbar-actions button.primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+.sf-editbar-actions button.primary:hover {
+  background: #1d4ed8;
+}
+.sf-editbar-actions button.primary:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* 弹窗 */
+.sf-modal-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(15 23 42 / 0.45);
+  padding: 1rem;
+}
+.sf-modal {
+  width: min(22rem, 100%);
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgb(15 23 42 / 0.3);
+  padding: 1.25rem 1.25rem 1rem;
+}
+.sf-modal-title {
+  font-family: var(--sf-serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+.sf-modal-desc {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+.sf-modal-field {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+.sf-modal-field input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid rgb(15 23 42 / 0.2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+}
+.sf-modal-field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.12);
+}
+.sf-modal-field .eye {
+  border: 1px solid rgb(15 23 42 / 0.15);
+  border-radius: 8px;
+  background: white;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0 0.6rem;
+  color: #64748b;
+}
+.sf-modal-error {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+.sf-modal button.primary {
+  display: block;
+  width: 100%;
+  padding: 0.55rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.sf-modal button.primary:hover {
+  background: #1d4ed8;
+}
+.sf-modal-note {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin-top: 0.7rem;
+  line-height: 1.6;
+}
+.sf-modal-steps {
+  font-size: 0.8rem;
+  color: #475569;
+  padding-left: 1.2rem;
+  margin-bottom: 0.9rem;
+  line-height: 1.7;
+}
+.sf-modal-steps a {
+  color: #2563eb;
+}
+
+/* 移动端：翻页条占底，墨印与彩蛋同排上移 */
+@media (max-width: 767px) {
+  .sf-tips {
+    bottom: 68px;
+    left: 64px;
+    transform: none;
+    max-width: calc(100vw - 84px);
+  }
 }

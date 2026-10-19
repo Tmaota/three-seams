@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "content": "node scripts/split-content.mjs",
+    "migrate": "node scripts/split-content.mjs",
     "dev": "next dev",
-    "build": "node scripts/split-content.mjs && next build",
+    "build": "next build",
     "postbuild": "pagefind --site out --output-subdir _pagefind",
-    "start": "npx serve out"
+    "start": "node scripts/serve-out.mjs"
   },
   "dependencies": {
     "@types/node": "^26.6.5",

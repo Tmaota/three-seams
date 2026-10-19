@@ -1,0 +1,17 @@
+export default {
+  index: "地理与势力",
+  "---": { type: "separator", title: "" },
+  "e1": "概述",
+  "map-of-the-world": "世界地图",
+  "the-lake-court": "湖心庭",
+  "the-circlet": "低语者之环",
+  "the-stonewrought": "岩铸领",
+  "the-stormcrest": "暴冠高地",
+  "the-mutewood": "缄林",
+  "the-sky-isles": "浮空群岛",
+  "the-grey-corridors": "灰色走廊",
+  "outer-scenes": "外围场景",
+  "god-s-spine": "神脊峰",
+  "cinderveil": "烬汽城",
+  "transport": "交通网络",
+}

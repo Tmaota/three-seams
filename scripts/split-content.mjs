@@ -97,8 +97,12 @@ const uniqueSlug = (s) => {
   return out;
 };
 
-// —— 写文件 ——
-rmSync(CONTENT, { recursive: true, force: true });
+// —— 写文件（保留手写文件：home.config.json） ——
+for (const c of chapters) {
+  rmSync(join(CONTENT, c.slug), { recursive: true, force: true });
+}
+rmSync(join(CONTENT, "index.mdx"), { recursive: true, force: true });
+rmSync(join(CONTENT, "_meta.ts"), { force: true });
 mkdirSync(CONTENT, { recursive: true });
 mkdirSync(LIB, { recursive: true });
 
@@ -117,6 +121,7 @@ for (const c of chapters) {
 
   let indexPage = "---\n";
   indexPage += `title: ${yamlTitle(c.zh)}\n---\n\n`;
+  indexPage += `# ${c.zh}\n\n`;
   if (c.en) indexPage += `*${c.en}*\n\n`;
   indexPage += introBody ? `${introBody}\n\n` : "";
   if (c.entries.length) {
@@ -130,6 +135,7 @@ for (const c of chapters) {
     const slug = entrySlugs.get(e);
     const body = trimTail(e.body).join("\n");
     let page = `---\ntitle: ${yamlTitle(e.zh)}\n---\n\n`;
+    page += `# ${e.zh}\n\n`;
     if (e.en) page += `*${e.en}*\n\n`;
     page += body ? `${body}\n` : "";
     writeFileSync(join(dir, `${slug}.md`), page);

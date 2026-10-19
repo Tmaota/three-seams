@@ -1,0 +1,17 @@
+{
+  "title": "欢迎来到三缝之地",
+  "tagline": "「每一道缝隙里，都住着说话的存在。」",
+  "intro": "这里是三缝之地的设定集与旅者指南——从万族志到烬械学，初来乍到的旅者可以按顺序读下去，也可以随意翻检词条。",
+  "recent": [
+    {
+      "href": "/cinder-arcana/",
+      "text": "烬械学 Steam Arcana",
+      "desc": "天赋之外的大多数人，如何用烬械改写命运"
+    },
+    {
+      "href": "/adventurers/",
+      "text": "冒险者 The Adventurers",
+      "desc": "不是在探险，就是在准备探险"
+    }
+  ]
+}

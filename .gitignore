@@ -3,9 +3,8 @@ node_modules/
 .next/
 out/
 
-# 构建时生成（npm run content）
-content/
-lib/routes.generated.ts
+# 本地测试临时文件
+.test-*
 
 # 杂项
 *.log

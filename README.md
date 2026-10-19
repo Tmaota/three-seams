@@ -22,11 +22,19 @@ site/
 
 ```bash
 npm run dev       # 本地开发（搜索在 dev 模式不可用，属正常——Pagefind 只索引构建产物）
-npm run build     # 切分内容 + 构建 + 生成搜索索引，产物在 out/
-npm run content   # 只重新切分内容
+npm run build     # 构建 + 生成搜索索引，产物在 out/
+npm run migrate   # ⚠ 从 source/ 原文重新切分覆盖 content/（会覆盖在线编辑的改动，慎用）
 ```
 
 > Windows 本机若 `npm` 报错（kimi-desktop 残留垫片），用完整路径：`E:\npm.cmd run dev`
+
+## 墨种之境（在线编辑）
+
+- 左下角 ✒ 墨印 → 输入站点口令 → 正文/标题/首页欢迎语就地编辑 → **保存并发布**
+- 保存 = 直接向本仓库提交（首次需粘贴 GitHub 令牌，仅存本浏览器），push 触发自动部署，**约 10 分钟全网生效**
+- 口令在 [lib/site-config.ts](lib/site-config.ts) 的 `editPassword` 修改（纯前端门槛，安全线是令牌）
+- 令牌创建：github.com/settings/personal-access-tokens/new → 仅勾选本仓库 + Contents 读写
+- 「取消」会还原页面（丢弃未保存修改）；每次发布都是一条 git 提交，可随时回滚
 
 ## 部署
 
@@ -48,5 +56,5 @@ git push -u origin main
 
 ## 更新内容
 
-改 `source/` 里的设定原文 → push → 自动重新切分发布。词条间互链、
-infobox、分类标签在第二期加入。
+- **日常**：直接在网站上用墨种之境编辑（或改 `content/` 里的对应 .md 文件）→ push → 自动发布
+- **从原文重置**：把新的设定原文放进 `source/` → `npm run migrate`（会覆盖 content/ 手改内容）→ 检查后提交

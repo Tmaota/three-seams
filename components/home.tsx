@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import RandomEntry from '@/components/RandomEntry'
+import homeConfig from '@/content/home.config.json'
 
 // 板块宫格数据：图标暂用旧站 PNG 占位，待 codex 重绘后替换 public/icons/
 const CHAPTERS = [
@@ -18,16 +19,13 @@ const CHAPTERS = [
   { slug: 'cinder-arcana', zh: '烬械学', en: 'Steam Arcana', icon: 'cinder-arcana' },
 ]
 
-/** 首页上部：导语 + 动线按钮（标题 h1 由页面 frontmatter 渲染） */
+/** 首页上部：标题 + 导语 + 动线按钮（文案来自 home.config.json，可在墨种之境编辑） */
 export function HomeHero() {
   return (
     <section className="sf-hero">
-      {/* TODO: 欢迎语与导语是占位文案，随时可改 */}
-      <p className="sf-tagline">「每一道缝隙里，都住着说话的存在。」</p>
-      <p className="sf-intro">
-        这里是三缝之地的设定集与旅者指南——从万族志到烬械学，
-        初来乍到的旅者可以按顺序读下去，也可以随意翻检词条。
-      </p>
+      <h1>{homeConfig.title}</h1>
+      <p className="sf-tagline">{homeConfig.tagline}</p>
+      <p className="sf-intro">{homeConfig.intro}</p>
       <div className="sf-hero-actions">
         <Link className="sf-action" href="/races/">
           新手导读
@@ -62,20 +60,18 @@ export function SectionGrid() {
   )
 }
 
-/** 首页底部：最近收录（暂手工维护） */
+/** 首页底部：最近收录（数据来自 home.config.json） */
 export function RecentList() {
   return (
     <section className="sf-recent">
       <h2>最近收录</h2>
       <ul>
-        <li>
-          <Link href="/cinder-arcana/">烬械学 Steam Arcana</Link>
-          <span>天赋之外的大多数人，如何用烬械改写命运</span>
-        </li>
-        <li>
-          <Link href="/adventurers/">冒险者 The Adventurers</Link>
-          <span>不是在探险，就是在准备探险</span>
-        </li>
+        {homeConfig.recent.map((r) => (
+          <li key={r.href}>
+            <Link href={r.href}>{r.text}</Link>
+            <span>{r.desc}</span>
+          </li>
+        ))}
       </ul>
     </section>
   )

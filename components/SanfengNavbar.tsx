@@ -1,6 +1,6 @@
 'use client'
 
-import { Navbar, ThemeSwitch } from 'nextra-theme-docs'
+import { Navbar } from 'nextra-theme-docs'
 import RandomEntry from './RandomEntry'
 
 export default function SanfengNavbar() {
@@ -16,7 +16,6 @@ export default function SanfengNavbar() {
       }
     >
       <RandomEntry />
-      <ThemeSwitch />
     </Navbar>
   )
 }

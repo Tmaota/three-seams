@@ -1,0 +1,15 @@
+export default {
+  index: { display: "hidden", title: "欢迎来到三缝之地" },
+  "races": "万族志",
+  "geography": "地理与势力",
+  "magic-users": "术者种族",
+  "monsters": "终末形态图鉴",
+  "primordials": "始源三柱",
+  "sky-age": "天裂纪",
+  "pantheon": "十二神与历法志",
+  "unraveled": "退魔者总典",
+  "shadow-council": "阴影议会志",
+  "guild": "低语者保护协会",
+  "adventurers": "冒险者",
+  "cinder-arcana": "烬械学",
+}
