@@ -24,19 +24,22 @@ function shuffle<T>(array: T[]): T[] {
  * 全部播完后出现「墨字世界的尽头」结尾语。
  */
 export default function TipsBar() {
-  const [shuffled] = useState<string[]>(() => shuffle(tips))
+  const [mounted, setMounted] = useState(false)
+  const [shuffled, setShuffled] = useState<string[]>([])
   const [index, setIndex] = useState(0)
   const [visible, setVisible] = useState(false)
   const [ended, setEnded] = useState(false)
   const [minimized, setMinimized] = useState(false)
 
   useEffect(() => {
+    // 随机顺序只在客户端生成，服务端渲染空壳，避免水合不一致
+    setShuffled(shuffle(tips))
+    setMounted(true)
     try {
       setMinimized(localStorage.getItem(MINIMIZED_KEY) === '1')
     } catch {
       /* ignore */
     }
-    // 首屏淡入
     const t = setTimeout(() => setVisible(true), 300)
     return () => clearTimeout(t)
   }, [])
@@ -75,12 +78,12 @@ export default function TipsBar() {
     }
   }
 
-  if (minimized) {
-    return (
+  if (!mounted || minimized) {
+    return minimized ? (
       <button type="button" className="sf-tips-restore" onClick={restore} title="旅者手记">
         <Image src="/icons/icon-tips.svg" alt="" width={16} height={16} />
       </button>
-    )
+    ) : null
   }
 
   const displayText = ended
