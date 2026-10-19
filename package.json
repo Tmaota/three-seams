@@ -6,7 +6,7 @@
     "content": "node scripts/split-content.mjs",
     "migrate": "node scripts/split-content.mjs",
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/gen-site-data.mjs && next build",
     "postbuild": "pagefind --site out --output-subdir _pagefind",
     "start": "node scripts/serve-out.mjs"
   },

@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import Image from 'next/image'
 import tips from '@/data/tips.json'
 
 const ROTATE_MS = 6000 // 每条停留 6 秒，由进度条动画驱动切换
@@ -77,7 +78,7 @@ export default function TipsBar() {
   if (minimized) {
     return (
       <button type="button" className="sf-tips-restore" onClick={restore} title="旅者手记">
-        ✦
+        <Image src="/icons/icon-tips.svg" alt="" width={16} height={16} />
       </button>
     )
   }
@@ -92,7 +93,7 @@ export default function TipsBar() {
         ×
       </button>
       <span className="sf-tips-icon" aria-hidden>
-        ✦
+        <Image src="/icons/icon-tips.svg" alt="" width={13} height={13} />
       </span>
       <p
         className="sf-tips-text"

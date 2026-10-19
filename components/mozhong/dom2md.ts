@@ -12,6 +12,8 @@ function inline(node: Node): string {
   }
   if (node.nodeType !== Node.ELEMENT_NODE) return ''
   const el = node as Element
+  // 墨种之境保存时跳过的区域（信息框、分类行等由 frontmatter/配置承载）
+  if (el.closest('[data-sf-skip]')) return ''
   // 标题锚点、装饰图标等无文本或纯图标元素
   if (el.classList.contains('anchor') || el.getAttribute('aria-hidden') === 'true') return ''
   switch (el.tagName) {
@@ -71,6 +73,7 @@ export function domToMarkdown(root: Element): string {
       }
       if (node.nodeType !== Node.ELEMENT_NODE) return
       const el = node as Element
+      if (el.closest('[data-sf-skip]')) return
 
       if (/^H[1-6]$/.test(el.tagName)) {
         const level = Math.min(Number(el.tagName[1]), 6)

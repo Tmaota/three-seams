@@ -85,7 +85,30 @@ export async function saveEntryPage(opts: {
   }
 
   const newBody = domToMarkdown(opts.mainEl)
-  const text = front + newBody
+
+  // 信息框行 → frontmatter infobox 字段（用户在页面上编辑即改数据源）
+  let text = front + newBody
+  const rows = opts.mainEl.querySelectorAll('.sf-infobox .sf-infobox-row')
+  if (rows.length > 0) {
+    const infobox: Record<string, string> = {}
+    rows.forEach((row) => {
+      const k = row.querySelector('dt')?.textContent?.trim()
+      const v = row.querySelector('dd')?.textContent?.trim()
+      if (k && v) infobox[k] = v
+    })
+    const yaml =
+      'infobox:\n' +
+      Object.entries(infobox)
+        .map(([k, v]) => `  "${k}": "${v.replace(/"/g, '“')}"`)
+        .join('\n') +
+      '\n'
+    text = /^infobox:\r?\n(?:[ \t]+.*\r?\n?)*/m.test(text)
+      ? text.replace(/^infobox:\r?\n(?:[ \t]+.*\r?\n?)+/m, yaml)
+      : /^title: .*\r?\n/m.test(text)
+        ? text.replace(/(^title: .*\r?\n)/m, `$1${yaml}`)
+        : `${front}${yaml}`
+  }
+
   await ghPut(path, text, `墨种之境：编辑「${pageTitle(opts.titleEl, path)}」`, opts.token, existing.sha)
 }
 

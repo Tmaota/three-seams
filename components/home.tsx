@@ -47,7 +47,7 @@ export function SectionGrid() {
         <Link key={c.slug} href={`/${c.slug}/`} className="sf-card">
           <Image
             className="sf-card-icon"
-            src={`/icons/${c.icon}.png`}
+            src={`/icons/${c.icon}.svg`}
             alt=""
             width={56}
             height={56}
